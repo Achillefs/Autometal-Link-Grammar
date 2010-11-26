@@ -28,7 +28,7 @@ You can then use daemons or the god gem or whatever else you prefer to manage th
 
 === Using the client
   require "rubygems"
-  require "autometal-link-grammar/server"
+  require "autometal-link-grammar/client"
   c = LinkParserClient.new("localhost",1211)
   r = c.parse("Only way to feel the noise is when it's coming loud.")
   puts r.inspect
