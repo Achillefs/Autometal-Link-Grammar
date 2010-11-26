@@ -1,32 +1,66 @@
-= lg
+= Autometal Link Grammar
 
-* http://github.com/#{github_username}/#{project_name}
+* https://github.com/Achillefs/Autometal-Link-Grammar
+* http://humbuckercode.co.uk/licks/gems/link-grammar/
 
 == DESCRIPTION:
+This is a client - server pattern wrapper to the Link Grammar application first developed by Carnegie Melon University (http://www.link.cs.cmu.edu/link/).
+Most current release can be found at the Abisource website: http://www.abisource.com/projects/link-grammar/
 
-FIX (describe your package)
+This get allows users to create a link grammar server that runs in the background and return the number of linkages found to any sentence that is passed to it. The implementation is very simple, as Autometal's requirements are very specific, but you can easily amend the server portion to return any linkparser values that are of interest to you.
 
 == FEATURES/PROBLEMS:
 
-* FIX (list of features or problems)
+* An implementation of a PHP Link Grammar Client is included in <gemroot>/etc/
 
 == SYNOPSIS:
+=== Creating a server script
+require "rubygems"
+require "autometal-link-grammar/server"
+  server = LinkParserServer.new(1211)
+  server.audit = true
+  puts "LinkParserServer version #{LinkGrammar::VERSION} starting at port #{server.port}"
+  puts "copyright 2010 Achillefs Charmpilas - Humbucker Ltd"
+  server.start
+  server.join
 
-  FIX (code sample of usage)
+You can then use daemons or the god gem or whatever else you prefer to manage the server process.
+
+=== Using the client
+  require "rubygems"
+  require "autometal-link-grammar/server"
+  c = LinkParserClient.new("localhost",1211)
+  r = c.parse("Only way to feel the noise is when it's coming loud.")
+  puts r.inspect
+  => 9
+  
+Same goes for the sample PHP client:
+  <?php
+    include("./etc/link_grammar_client.php");
+    $c = new LinkParserClient("127.0.0.1",1211);
+    $r = $c->parse("I want to think about this.");
+    echo $r;
+    => 9
+  ?>
 
 == REQUIREMENTS:
 
-* FIX (list of requirements)
+* ruby 1.9.x (way, way faster than 1.8.x, but server will still work with 1.8)
+* link-grammar
+* linkparser gem
 
 == INSTALL:
 
-* FIX (sudo gem install, anything else)
+* Download and install the latest Link Grammar package from (currently 4.7.0 http://www.abisource.com/downloads/link-grammar/4.7.0/link-grammar-4.7.0.tar.gz)
+* Download and install the latest LinkParser gem http://deveiate.org/code/linkparser-1.0.6.gem
+Bear in mind that on OS X you will need to set ARCHFLAGS like so:
+  sudo env ARCHFLAGS="-arch i386" gem install linkparser-1.0.6.gem --no-ri --no-rdoc
 
 == LICENSE:
 
 (The MIT License)
 
-Copyright (c) 2010 FIXME full name
+Copyright (c) 2010 Achillefs Charmpilas
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -46,3 +80,17 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
 CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+=== The Link Grammar License
+
+The Link Grammar license is essentially the BSD license. A copy of this license can be found below, and at the original author's CMU site
+
+Copyright (c) 2003-2004 Daniel Sleator, David Temperley, and John Lafferty. All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+
+   1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+   2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+   3. The names "Link Grammar" and "Link Parser" must not be used to endorse or promote products derived from this software without prior written permission. To obtain permission, contact sleator@cs.cmu.edu
+
+THIS SOFTWARE IS PROVIDED BY DANIEL SLEATOR, DAVID TEMPERLEY, JOHN LAFFERTY AND OTHER CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.

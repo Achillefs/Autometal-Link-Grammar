@@ -17,7 +17,6 @@
   wget http://deveiate.org/code/linkparser-1.0.6.gem
   sudo env ARCHFLAGS="-arch i386" gem install linkparser-1.0.6.gem --no-ri --no-rdoc (on osx)
   sudo gem install linkparser-1.0.6.gem --no-ri --no-rdoc (on linux)
-  sudo gem install json --no-ri --no-rdoc
 
 = Example Server Script
   server = LinkParserServer.new(1211)

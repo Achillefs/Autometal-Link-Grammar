@@ -2,9 +2,8 @@ require "socket"
 =begin rdoc
 = Example Usage
   c = LinkParserClient.new("localhost",1211)
-  r = c.parse("I want to think about this.")
+  r = c.parse("Only way to feel the noise is when it's coming loud.")
   puts r.inspect
-  => 4
 =end
 module LinkGrammar
   class Client
