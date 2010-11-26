@@ -30,17 +30,19 @@ You can then use daemons or the god gem or whatever else you prefer to manage th
   require "rubygems"
   require "autometal-link-grammar/client"
   c = LinkParserClient.new("localhost",1211)
-  r = c.parse("Only way to feel the noise is when it's coming loud.")
-  puts r.inspect
-  => 9
+  puts c.parse("Only way to feel the noise is when it's coming loud.")
+  => 0
+  puts c.parse("The only way to feel the noise is when it's coming loud.")
+  => 15
   
 Same goes for the sample PHP client:
   <?php
     include("./etc/link_grammar_client.php");
     $c = new LinkParserClient("127.0.0.1",1211);
-    $r = $c->parse("I want to think about this.");
-    echo $r;
-    => 9
+    echo c.parse("Only way to feel the noise is when it's coming loud.")
+    => 0
+    echo c.parse("The only way to feel the noise is when it's coming loud.")
+    => 15
   ?>
 
 == REQUIREMENTS:
