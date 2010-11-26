@@ -15,8 +15,8 @@ This get allows users to create a link grammar server that runs in the backgroun
 
 == SYNOPSIS:
 === Creating a server script
-require "rubygems"
-require "autometal-link-grammar/server"
+  require "rubygems"
+  require "autometal-link-grammar/server"
   server = LinkParserServer.new(1211)
   server.audit = true
   puts "LinkParserServer version #{LinkGrammar::VERSION} starting at port #{server.port}"
