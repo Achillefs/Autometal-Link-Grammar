@@ -39,9 +39,9 @@ Same goes for the sample PHP client:
   <?php
     include("./etc/link_grammar_client.php");
     $c = new LinkParserClient("127.0.0.1",1211);
-    echo c.parse("Only way to feel the noise is when it's coming loud.")
+    echo $c->parse("Only way to feel the noise is when it's coming loud.")
     => 0
-    echo c.parse("The only way to feel the noise is when it's coming loud.")
+    echo $c->parse("The only way to feel the noise is when it's coming loud.")
     => 15
   ?>
 
